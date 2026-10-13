@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Program79
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            Console.Write("Введите уровень кислотности почвы (pH): ");
+            string input=Console.ReadLine();
+
+            if (double.TryParse(input, out double ph) && ph >= 0 && ph <= 14)
+            {
+                string soilType;
+
+                if (ph < 6.0)
+                    soilType = "Кислая";
+                else if (ph <= 7.2)  // покрывает диапазон [6.0; 7.2]
+                    soilType = "Нейтральная";
+                else                 // ph > 7.2
+                    soilType = "Щелочная";
+
+                Console.WriteLine($"Тип почвы: {soilType}");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка ввода. Укажите значение pH в диапазоне от 0 до 14.");
+            }
+        }
+    }
+}
